@@ -8,5 +8,7 @@ class FastTyperApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
+
+
     }
 }
