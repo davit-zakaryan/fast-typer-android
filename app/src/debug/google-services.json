@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1008449008424",
+    "firebase_url": "https://fast-typer-debug.firebaseio.com",
+    "project_id": "fast-typer-debug",
+    "storage_bucket": "fast-typer-debug.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008449008424:android:c58206626e6590de7f561d",
+        "android_client_info": {
+          "package_name": "com.dzakaryan.fasttyper.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008449008424-0bk1qer8qpnivh16fkiqap59ou6d87fq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dzakaryan.fasttyper.debug",
+            "certificate_hash": "18875f088efe46b8872ae89077a75b8b1e9e9621"
+          }
+        },
+        {
+          "client_id": "1008449008424-78gv8slim74da39gf5c3pd6dgkubuvam.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXj2L-tEdbwce_k-mHlmgzVr0lLKhFdfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008449008424-78gv8slim74da39gf5c3pd6dgkubuvam.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
