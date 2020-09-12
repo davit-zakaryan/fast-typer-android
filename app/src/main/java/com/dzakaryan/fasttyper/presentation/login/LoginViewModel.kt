@@ -1,4 +1,6 @@
 package com.dzakaryan.fasttyper.presentation.login
 
-class LoginViewModel {
+import androidx.lifecycle.ViewModel
+
+class LoginViewModel : ViewModel() {
 }
