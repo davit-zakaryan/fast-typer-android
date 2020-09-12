@@ -43,4 +43,12 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
 
+    //Firebase Auth
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
 }
