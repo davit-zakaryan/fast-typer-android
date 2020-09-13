@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModelProvider
 import com.dzakaryan.fasttyper.FastTyperApp
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
@@ -25,7 +24,7 @@ class LoginFragment : BaseFragment() {
     private lateinit var auth: FirebaseAuth
 
     //region Properties
-    private val viewModel: LoginViewModel by lazy { injectViewModel() }
+    lateinit var viewModel: LoginViewModel
     //endregion
 
     //region Override open methods
@@ -34,8 +33,7 @@ class LoginFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (requireActivity().application as FastTyperApp)
-            .applicationComponent.inject(viewModel)
+        (requireActivity().application as FastTyperApp).getAppComponent().inject(viewModel)
 
 
         auth = Firebase.auth
@@ -76,7 +74,7 @@ class LoginFragment : BaseFragment() {
     //endregion
 
     //region Private utility methods
-    private fun injectViewModel() = ViewModelProvider(this).get(LoginViewModel::class.java)
+    // private fun injectViewModel() = ViewModelProvider(this).get(LoginViewModel::class.java)
 
     private fun initGoogleSignInClient() {
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

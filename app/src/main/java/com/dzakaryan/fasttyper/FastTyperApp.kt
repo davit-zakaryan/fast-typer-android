@@ -10,7 +10,7 @@ import com.facebook.stetho.Stetho
 class FastTyperApp : Application() {
 
     //region Properties
-    val applicationComponent: AppComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
+    private val applicationComponent: AppComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
         initDagger(this)
     }
     //endregion
@@ -20,6 +20,10 @@ class FastTyperApp : Application() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
     }
+    //endregion
+
+    //region Public methods
+    fun getAppComponent() = applicationComponent
     //endregion
 
     //region Private utility methods
