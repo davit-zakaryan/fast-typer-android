@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fast Typer</string>
+    <string name="login_subtitle">Improve your typing skill with us</string>
+    <string name="action_start">Start</string>
+    <string name="typing_subtitle">Train yourself to type fast</string>
+    <string name="end_typing_subtitle">You did it</string>
+    <string name="action_play_again">Play again</string>
 </resources>

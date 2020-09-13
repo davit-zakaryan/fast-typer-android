@@ -15,9 +15,9 @@
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <style name="Text.Subhead.Secondary">
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
+    <!--    <style name="Text.Subhead.Secondary">-->
+    <!--        <item name="android:textColor">@android:/colorPrimary</item>-->
+    <!--    </style>-->
 
     <style name="Text.Headline">
         <item name="android:textSize">@dimen/text_headline</item>

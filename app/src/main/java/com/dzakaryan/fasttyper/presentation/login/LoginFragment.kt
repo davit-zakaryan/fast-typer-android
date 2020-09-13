@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.dzakaryan.fasttyper.FastTyperApp
+import androidx.navigation.fragment.findNavController
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -20,11 +20,10 @@ import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment() {
 
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var auth: FirebaseAuth
-
     //region Properties
     lateinit var viewModel: LoginViewModel
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
     //endregion
 
     //region Override open methods
@@ -33,7 +32,7 @@ class LoginFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (requireActivity().application as FastTyperApp).getAppComponent().inject(viewModel)
+        // (requireActivity().application as FastTyperApp).getAppComponent().inject(viewModel)
 
 
         auth = Firebase.auth
@@ -42,9 +41,12 @@ class LoginFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        signInViewFirebase.setOnClickListener {
+        signInGoogleButton.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, FIREBASE_SIGN_IN_RC)
+        }
+        signInGuestButton.setOnClickListener {
+            findNavController().navigate(R.id.typeFragment, null)
         }
         initGoogleSignInClient()
     }

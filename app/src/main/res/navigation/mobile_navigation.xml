@@ -8,4 +8,9 @@
         android:id="@+id/loginFragment"
         android:name="com.dzakaryan.fasttyper.presentation.login.LoginFragment"
         android:label="LoginFragment" />
+
+    <fragment
+        android:id="@+id/typeFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.typing.start.TypingStartFragment"
+        android:label="TypeFragment" />
 </navigation>
