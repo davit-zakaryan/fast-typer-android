@@ -1,6 +1,6 @@
 package com.dzakaryan.fasttyper.domain.repository
 
-interface UserRepository {
+interface IUserRepository {
 
     fun getUser()
 

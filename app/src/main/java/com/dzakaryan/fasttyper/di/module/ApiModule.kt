@@ -1,4 +1,4 @@
-package com.dzakaryan.fasttyper.data.di.module
+package com.dzakaryan.fasttyper.di.module
 
 import com.dzakaryan.fasttyper.data.api.RandomTextApi
 import dagger.Module

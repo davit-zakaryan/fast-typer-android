@@ -1,4 +1,4 @@
-package com.dzakaryan.fasttyper.presentation
+package com.dzakaryan.fasttyper.presentation.core
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
