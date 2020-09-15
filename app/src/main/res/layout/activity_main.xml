@@ -18,76 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:clickable="true"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/layout_nav_header"
         app:menu="@menu/drawer_items">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:orientation="vertical"
-            android:padding="0dp">
-
-            <View
-                android:id="@+id/settingsContainerView"
-                style="@style/Clickable"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                app:layout_constraintBottom_toTopOf="@id/logoutContainerView" />
-
-            <ImageView
-                android:id="@+id/settingsImage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_settings_24"
-                app:layout_constraintBottom_toBottomOf="@id/settingsContainerView"
-                app:layout_constraintStart_toStartOf="@id/settingsContainerView"
-                app:layout_constraintTop_toTopOf="@id/settingsContainerView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/menu_action_settings"
-                app:layout_constraintBottom_toBottomOf="@id/settingsContainerView"
-                app:layout_constraintEnd_toEndOf="@id/settingsContainerView"
-                app:layout_constraintStart_toEndOf="@id/settingsImage"
-                app:layout_constraintTop_toTopOf="@id/settingsContainerView" />
-
-            <View
-                android:id="@+id/logoutContainerView"
-                style="@style/Clickable"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <ImageView
-                android:id="@+id/logoutImage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="16dp"
-                android:contentDescription="@null"
-                android:src="@drawable/ic_exit_24"
-                app:layout_constraintBottom_toBottomOf="@id/logoutContainerView"
-                app:layout_constraintStart_toStartOf="@id/logoutContainerView"
-                app:layout_constraintTop_toTopOf="@id/logoutContainerView" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/menu_action_log_out"
-                app:layout_constraintBottom_toBottomOf="@id/logoutContainerView"
-                app:layout_constraintEnd_toEndOf="@id/logoutContainerView"
-                app:layout_constraintStart_toEndOf="@id/logoutImage"
-                app:layout_constraintTop_toTopOf="@id/logoutContainerView" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--TODO Settings and Logout nice to have on bottom of drawer-->
+        <include
+            layout="@layout/layout_drawer_bottom"
+            android:visibility="gone" />
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
