@@ -9,11 +9,16 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment : Fragment() {
 
     //region Override open methods
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (requireActivity() as? DrawerLocker)?.setDrawerLocked(false)
         return inflater.inflate(getLayoutId(), container, false)
     }
     //endregion

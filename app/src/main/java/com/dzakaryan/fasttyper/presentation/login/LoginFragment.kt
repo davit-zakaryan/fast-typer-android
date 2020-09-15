@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
+import com.dzakaryan.fasttyper.presentation.core.DrawerLocker
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -32,14 +34,16 @@ class LoginFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // (requireActivity().application as FastTyperApp).getAppComponent().inject(viewModel)
-
-
         auth = Firebase.auth
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as? DrawerLocker)?.setDrawerLocked(true)
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(false)
+        }
 
         signInGoogleButton.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
@@ -105,6 +109,8 @@ class LoginFragment : BaseFragment() {
                 }
             }
     }
+
+//    override fun onPrepareOptionsMenu(menu: Menu?) = false
     //endregion
 
 

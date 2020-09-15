@@ -1,7 +1,6 @@
 package com.dzakaryan.fasttyper.presentation.core
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -12,8 +11,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dzakaryan.fasttyper.R
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), DrawerLocker {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -27,11 +27,6 @@ class MainActivity : AppCompatActivity() {
         initDrawerLayout()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.drawer_items, menu)
-        return true
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -41,10 +36,10 @@ class MainActivity : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // menuIDs must be the same as destination IDs
         appBarConfiguration = AppBarConfiguration(
             setOf(
+                R.id.loginFragment,
                 R.id.typingStartFragment, R.id.statisticsFragment, R.id.leaderboardFragment
             ), drawerLayout
         )
@@ -52,5 +47,11 @@ class MainActivity : AppCompatActivity() {
         navigationView.setupWithNavController(navController)
     }
 
-
+    override fun setDrawerLocked(shouldLock: Boolean) {
+        if (shouldLock) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        }
+    }
 }
