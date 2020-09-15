@@ -32,6 +32,14 @@ class MainActivity : AppCompatActivity(), DrawerLocker {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    override fun setDrawerLocked(shouldLock: Boolean) {
+        if (shouldLock) {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        }
+    }
+
     private fun initDrawerLayout() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val navigationView: NavigationView = findViewById(R.id.navigationView)
@@ -40,18 +48,13 @@ class MainActivity : AppCompatActivity(), DrawerLocker {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.loginFragment,
-                R.id.typingStartFragment, R.id.statisticsFragment, R.id.leaderboardFragment
+                R.id.typingStartFragment,
+                R.id.statisticsFragment,
+                R.id.leaderboardFragment,
+                R.id.settingsFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
-    }
-
-    override fun setDrawerLocked(shouldLock: Boolean) {
-        if (shouldLock) {
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        } else {
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-        }
     }
 }

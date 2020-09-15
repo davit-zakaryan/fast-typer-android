@@ -7,7 +7,12 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.dzakaryan.fasttyper.presentation.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_typingStartFragment"
+            app:destination="@id/typingStartFragment"
+            app:popUpTo="@id/typingStartFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/typingStartFragment"
@@ -33,4 +38,9 @@
         android:id="@+id/statisticsFragment"
         android:name="com.dzakaryan.fasttyper.presentation.statistics.StatisticsFragment"
         android:label="StatisticsFragment" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/settingsContainerView"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageView
+        android:id="@+id/settingsImage"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_settings_24"
+        app:layout_constraintBottom_toBottomOf="@id/settingsContainerView"
+        app:layout_constraintStart_toStartOf="@id/settingsContainerView"
+        app:layout_constraintTop_toTopOf="@id/settingsContainerView" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="@id/settingsContainerView"
+        app:layout_constraintEnd_toEndOf="@id/settingsContainerView"
+        app:layout_constraintStart_toEndOf="@id/settingsImage"
+        app:layout_constraintTop_toTopOf="@id/settingsContainerView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
