@@ -5,4 +5,7 @@
     <string name="typing_subtitle">Train yourself to type fast</string>
     <string name="end_typing_subtitle">You did it</string>
     <string name="action_play_again">Play again</string>
+    <string name="menu_action_play">Play</string>
+    <string name="menu_action_statistics">Statistics</string>
+    <string name="menu_action_leaderboard">Leaderboard</string>
 </resources>

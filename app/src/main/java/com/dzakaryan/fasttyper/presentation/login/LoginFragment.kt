@@ -46,7 +46,7 @@ class LoginFragment : BaseFragment() {
             startActivityForResult(signInIntent, FIREBASE_SIGN_IN_RC)
         }
         signInGuestButton.setOnClickListener {
-            findNavController().navigate(R.id.typeFragment, null)
+            findNavController().navigate(R.id.typingStartFragment, null)
         }
         initGoogleSignInClient()
     }

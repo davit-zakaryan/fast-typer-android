@@ -10,7 +10,27 @@
         android:label="LoginFragment" />
 
     <fragment
-        android:id="@+id/typeFragment"
+        android:id="@+id/typingStartFragment"
         android:name="com.dzakaryan.fasttyper.presentation.typing.start.TypingStartFragment"
         android:label="TypeFragment" />
+
+    <fragment
+        android:id="@+id/typingEndFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.typing.end.TypingEndFragment"
+        android:label="TypingEndFragment" />
+
+    <fragment
+        android:id="@+id/typingProcessFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.typing.process.TypingProcessFragment"
+        android:label="TypingProcessFragment" />
+
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.leaderboard.LeaderboardFragment"
+        android:label="LeaderboardFragment" />
+
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.dzakaryan.fasttyper.presentation.statistics.StatisticsFragment"
+        android:label="StatisticsFragment" />
 </navigation>
