@@ -17,30 +17,38 @@
     <fragment
         android:id="@+id/typingStartFragment"
         android:name="com.dzakaryan.fasttyper.presentation.typing.start.TypingStartFragment"
-        android:label="TypeFragment" />
+        android:label="Play">
+        <action
+            android:id="@+id/action_typingStartFragment_to_typingProcessFragment"
+            app:destination="@id/typingProcessFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/typingEndFragment"
         android:name="com.dzakaryan.fasttyper.presentation.typing.end.TypingEndFragment"
-        android:label="TypingEndFragment" />
+        android:label="Play" />
 
     <fragment
         android:id="@+id/typingProcessFragment"
         android:name="com.dzakaryan.fasttyper.presentation.typing.process.TypingProcessFragment"
-        android:label="TypingProcessFragment" />
+        android:label="Play">
+        <action
+            android:id="@+id/action_typingProcessFragment_to_typingEndFragment"
+            app:destination="@id/typingEndFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/leaderboardFragment"
         android:name="com.dzakaryan.fasttyper.presentation.leaderboard.LeaderboardFragment"
-        android:label="LeaderboardFragment" />
+        android:label="Leaderboard" />
 
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.dzakaryan.fasttyper.presentation.statistics.StatisticsFragment"
-        android:label="StatisticsFragment" />
+        android:label="Statistics" />
 
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.dzakaryan.fasttyper.presentation.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" />
 </navigation>

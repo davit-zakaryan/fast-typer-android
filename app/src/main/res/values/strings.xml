@@ -10,4 +10,6 @@
     <string name="menu_action_leaderboard">Leaderboard</string>
     <string name="menu_action_settings">Settings</string>
     <string name="menu_action_log_out">Log Out</string>
+    <string name="allowed_characters">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM :;,.?!\'-</string>
+    <string name="text">Authors often misinterpret the ease as an adult needle, when in actuality it feels more lik</string>
 </resources>

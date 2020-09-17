@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
 abstract class BaseFragment : Fragment() {
@@ -19,6 +20,7 @@ abstract class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (requireActivity() as? DrawerLocker)?.setDrawerLocked(false)
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.show()
         return inflater.inflate(getLayoutId(), container, false)
     }
     //endregion

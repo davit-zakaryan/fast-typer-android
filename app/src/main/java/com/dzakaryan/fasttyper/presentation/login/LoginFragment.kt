@@ -10,22 +10,15 @@ import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
 import com.dzakaryan.fasttyper.presentation.core.DrawerLocker
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_login.*
-
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : BaseFragment() {
 
     //region Properties
-    lateinit var viewModel: LoginViewModel
-    private lateinit var googleSignInClient: GoogleSignInClient
-    private lateinit var auth: FirebaseAuth
+    private val viewModel: LoginViewModel by viewModel()
     //endregion
 
     //region Override open methods
@@ -33,31 +26,22 @@ class LoginFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        auth = Firebase.auth
+        viewModel.onCreate()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as? DrawerLocker)?.setDrawerLocked(true)
-        (requireActivity() as? AppCompatActivity)?.supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(false)
-        }
+        (requireActivity() as? AppCompatActivity)?.supportActionBar?.hide()
 
         signInGoogleButton.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
+            val signInIntent = viewModel.googleSignInClient.signInIntent
             startActivityForResult(signInIntent, FIREBASE_SIGN_IN_RC)
         }
         signInGuestButton.setOnClickListener {
             findNavController().navigate(R.id.typingStartFragment, null)
         }
-        initGoogleSignInClient()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,25 +64,14 @@ class LoginFragment : BaseFragment() {
     //endregion
 
     //region Private utility methods
-    // private fun injectViewModel() = ViewModelProvider(this).get(LoginViewModel::class.java)
-
-    private fun initGoogleSignInClient() {
-        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(requireActivity(), googleSignInOptions)
-    }
-
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
+        viewModel.auth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
+                    val user = viewModel.auth.currentUser
                     //updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
@@ -110,7 +83,6 @@ class LoginFragment : BaseFragment() {
             }
     }
 
-//    override fun onPrepareOptionsMenu(menu: Menu?) = false
     //endregion
 
 

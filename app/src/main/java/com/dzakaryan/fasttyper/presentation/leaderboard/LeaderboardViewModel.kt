@@ -1,4 +1,7 @@
 package com.dzakaryan.fasttyper.presentation.leaderboard
 
-class LeaderboardViewModel {
+import android.app.Application
+import com.dzakaryan.fasttyper.presentation.core.BaseViewModel
+
+class LeaderboardViewModel(application: Application) : BaseViewModel(application) {
 }

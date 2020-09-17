@@ -5,5 +5,5 @@ import com.dzakaryan.fasttyper.presentation.core.BaseFragment
 
 class TypingEndFragment : BaseFragment() {
 
-    override fun getLayoutId() = R.layout.fragment_typing_start
+    override fun getLayoutId() = R.layout.fragment_typing_end
 }
