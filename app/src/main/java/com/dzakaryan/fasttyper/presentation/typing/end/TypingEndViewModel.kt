@@ -1,16 +1,13 @@
-package com.dzakaryan.fasttyper.presentation.statistics
+package com.dzakaryan.fasttyper.presentation.typing.end
 
 import android.app.Application
 import com.dzakaryan.fasttyper.domain.repository.HistoryRepository
 import com.dzakaryan.fasttyper.presentation.core.BaseViewModel
 
-class StatisticsViewModel(
+class TypingEndViewModel(
     application: Application,
-    historyRepository: HistoryRepository,
+    val historyRepository: HistoryRepository,
 ) : BaseViewModel(application) {
 
 
-    fun getPlayingHistory() {
-
-    }
 }

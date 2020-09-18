@@ -4,6 +4,7 @@ import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.login.LoginViewModel
 import com.dzakaryan.fasttyper.presentation.settings.SettingsViewModel
 import com.dzakaryan.fasttyper.presentation.statistics.StatisticsViewModel
+import com.dzakaryan.fasttyper.presentation.typing.end.TypingEndViewModel
 import com.dzakaryan.fasttyper.presentation.typing.process.TypingProcessViewModel
 import com.dzakaryan.fasttyper.presentation.typing.start.TypingStartViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -29,6 +30,8 @@ val appModule: Module = module {
     viewModel { TypingProcessViewModel(androidApplication()) }
 
     viewModel { TypingStartViewModel(androidApplication(), get()) }
+
+    viewModel { TypingEndViewModel(androidApplication(), get()) }
 
     single<GoogleSignInOptions> {
         GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
