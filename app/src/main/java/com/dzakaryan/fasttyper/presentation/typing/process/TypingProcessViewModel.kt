@@ -11,6 +11,11 @@ class TypingProcessViewModel(
 
     ) : BaseViewModel(application) {
 
+    //region Properties
+    var currentWholeTypedIndex = 0
+    var currentWordIndex = 0
+    var successTypedIndex = 0
+    //endregion
 
 
     init {

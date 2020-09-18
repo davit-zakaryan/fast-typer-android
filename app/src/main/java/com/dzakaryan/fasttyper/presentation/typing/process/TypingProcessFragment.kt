@@ -1,8 +1,13 @@
 package com.dzakaryan.fasttyper.presentation.typing.process
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Editable
 import android.text.Spannable
+import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
 import android.widget.TextView
@@ -15,6 +20,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class TypingProcessFragment : BaseFragment() {
 
+    private var isMistakeShown: Boolean = false
+
     //region Properties
     private val viewModel: TypingProcessViewModel by viewModel()
     private val countDownTimer: CountDownTimer by lazy { initCountDownTimer() }
@@ -24,8 +31,6 @@ class TypingProcessFragment : BaseFragment() {
 
     //region Override open methods
     override fun getLayoutId() = R.layout.fragment_typing_process
-
-
     //endregion
 
 
@@ -35,49 +40,119 @@ class TypingProcessFragment : BaseFragment() {
         textToType.setText(getString(R.string.text), TextView.BufferType.SPANNABLE)
         spannableText = textToType.text as Spannable
 
+        val words = spannableText.split("\\s+".toRegex()).map { word ->
+            word.replace("""^|$""".toRegex(), "")
+        }
+        words.forEach { println(it) }
+
+        //val queue: Queue<String> = LinkedList()
+
         //initCountDownTimer()
 
-        textToType.showSoftKeyboard()
+        fakeEditText.showSoftKeyboard()
 
-//        fakeEditText.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                //
-//            }
-//
-//            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-//                text?.let {
-//                    //textToType.text = it
-//
-//                }
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//                //
-//                s?.let {
-//
-//                    println(it.length)
-//
-//                    if (it.length - 1 >= 0)
-//                        spannableText.setSpan(
-//                            ForegroundColorSpan(Color.BLUE),
-//                            it.length - 1,
-//                            it.length - 1,
-//                            SPAN_INCLUSIVE_INCLUSIVE
-//                        )
-//
-//                    spannableText.setSpan(
-//                        ForegroundColorSpan(Color.RED),
-//                        it.length - 1,
-//                        it.length,
-//                        SPAN_COMPOSING
-//                    )
-//
-////                    if(it.length > 4)
-////                    it.setSpan(styleSpan, 0,it.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-//                }
-//            }
-//
-//        })
+        fakeEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                //No need
+            }
+
+            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
+                text?.let {
+
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                s?.let { editable ->
+                    afterTextChanged(editable, words)
+                }
+            }
+
+        })
+    }
+
+    private fun afterTextChanged(editable: Editable, words: List<String>) {
+        if (editable.isEmpty()) {
+            return
+        }
+        if (editable.last().isWhitespace()) {
+            if (words[viewModel.currentWordIndex].contentEquals(editable.trim())) {
+                viewModel.successTypedIndex = viewModel.successTypedIndex +
+                        words[viewModel.currentWordIndex].length + 1 //plus space
+
+                viewModel.currentWholeTypedIndex++
+                viewModel.currentWordIndex++
+
+                highlightSuccess(0, viewModel.successTypedIndex)
+                fakeEditText.text.clear()
+            } else {
+                // mistake is typed
+                highlightMistake(
+                    viewModel.successTypedIndex + editable.length - 1,
+                    viewModel.successTypedIndex + editable.length
+                )
+            }
+        } else if (words[viewModel.currentWordIndex].startsWith(editable) &&
+            words[viewModel.currentWordIndex].length >= editable.length
+        ) {
+            viewModel.currentWholeTypedIndex++
+            //viewModel.successTypedIndex = viewModel.successTypedIndex + editable.length
+            println("viewModel.successTypedIndex = " + viewModel.successTypedIndex + "length =" + editable.length)
+            if (isMistakeShown) {
+                unHightlightMistake(
+                    viewModel.successTypedIndex,
+                    viewModel.successTypedIndex + editable.length + 1
+                )
+            }
+            highlightSuccess(
+                viewModel.successTypedIndex,
+                viewModel.successTypedIndex + editable.length
+            )
+
+        } else {
+            highlightMistake(
+                viewModel.successTypedIndex + editable.length - 1,
+                viewModel.successTypedIndex + editable.length
+            )
+        }
+    }
+
+    private fun unHightlightMistake(start: Int, end: Int) {
+        fakeEditText.setBackgroundResource(R.drawable.bg_input_primary)
+        fakeEditText.setTextColor(Color.BLACK)
+        spannableText.setSpan(
+            ForegroundColorSpan(Color.BLACK),
+            start,
+            end,
+            SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+    }
+
+    private fun highlightSuccess(start: Int, end: Int) {
+        fakeEditText.setBackgroundResource(R.drawable.bg_input_primary)
+        fakeEditText.setTextColor(Color.BLACK)
+        spannableText.setSpan(
+            ForegroundColorSpan(Color.GREEN),
+            start,
+            end,
+            SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        isMistakeShown = false
+    }
+
+    private fun highlightMistake(start: Int, end: Int) {
+        if (!isMistakeShown) {
+            fakeEditText.setBackgroundResource(R.drawable.bg_input_secondary)
+            fakeEditText.setTextColor(Color.WHITE)
+            spannableText.setSpan(
+                ForegroundColorSpan(Color.RED),
+                start,
+                end,
+                SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            isMistakeShown = true
+        }
+
     }
 
 
