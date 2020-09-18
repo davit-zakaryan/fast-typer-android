@@ -6,9 +6,5 @@ interface UserRepository {
 
     suspend fun saveAuthenticatedUser(user: User?)
 
-    fun getUser(): User
-
-    fun getStatistics()
-
-    fun saveStatistics()
+    suspend fun getUser(): User
 }

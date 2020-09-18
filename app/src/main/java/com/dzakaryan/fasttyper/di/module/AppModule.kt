@@ -25,7 +25,7 @@ val appModule: Module = module {
 
     viewModel { SettingsViewModel(androidApplication()) }
 
-    viewModel { StatisticsViewModel(androidApplication()) }
+    viewModel { StatisticsViewModel(androidApplication(), get(), get()) }
 
     viewModel { TypingProcessViewModel(androidApplication()) }
 

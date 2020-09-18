@@ -1,16 +1,22 @@
 package com.dzakaryan.fasttyper.presentation.statistics
 
 import android.app.Application
+import androidx.lifecycle.viewModelScope
 import com.dzakaryan.fasttyper.domain.repository.HistoryRepository
+import com.dzakaryan.fasttyper.domain.repository.UserRepository
 import com.dzakaryan.fasttyper.presentation.core.BaseViewModel
+import kotlinx.coroutines.launch
 
 class StatisticsViewModel(
     application: Application,
-    historyRepository: HistoryRepository,
+    private val historyRepository: HistoryRepository,
+    private val userRepository: UserRepository,
 ) : BaseViewModel(application) {
 
 
     fun getPlayingHistory() {
-
+        viewModelScope.launch {
+            //historyRepository.requestAllHistory()
+        }
     }
 }

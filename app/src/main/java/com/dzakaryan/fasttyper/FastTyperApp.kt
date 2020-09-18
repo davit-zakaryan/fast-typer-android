@@ -2,6 +2,7 @@ package com.dzakaryan.fasttyper
 
 import android.app.Application
 import com.dzakaryan.fasttyper.di.module.appModule
+import com.dzakaryan.fasttyper.di.module.networkModule
 import com.dzakaryan.fasttyper.di.module.repositoryModule
 import com.facebook.stetho.Stetho
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +21,7 @@ class FastTyperApp : Application() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@FastTyperApp)
-            modules(appModule, repositoryModule)
+            modules(appModule, networkModule, repositoryModule)
         }
     }
     //endregion
