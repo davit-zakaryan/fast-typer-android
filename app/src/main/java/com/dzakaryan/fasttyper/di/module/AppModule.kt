@@ -20,7 +20,7 @@ val appModule: Module = module {
     // single instance of HelloRepository
     //single<HelloRepository> { HelloRepositoryImpl() }
 
-    viewModel { LoginViewModel(androidApplication(), get()) }
+    viewModel { LoginViewModel(androidApplication(), get(), get(), get()) }
 
     viewModel { SettingsViewModel(androidApplication()) }
 

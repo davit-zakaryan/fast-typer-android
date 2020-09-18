@@ -8,6 +8,8 @@ import androidx.navigation.fragment.findNavController
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
 import com.dzakaryan.fasttyper.presentation.core.DrawerLocker
+import com.dzakaryan.fasttyper.presentation.core.NavigationHeaderView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -36,7 +38,13 @@ class LoginFragment : BaseFragment() {
     override fun observeData() {
         viewModel.userLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
-
+                val activity = requireActivity() as? NavigationHeaderView
+                activity?.apply {
+                    getDisplayNameView().text = it.displayName
+                    getEmailView().text = it.email
+                    Picasso.get().load(it.photoUrl).into(getHeaderImageView())
+                    findNavController().navigate(R.id.typingStartFragment, null)
+                }
             }
         })
     }

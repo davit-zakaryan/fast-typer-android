@@ -1,6 +1,9 @@
 package com.dzakaryan.fasttyper.presentation.core
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -13,9 +16,10 @@ import com.dzakaryan.fasttyper.R
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), DrawerLocker {
+class MainActivity : AppCompatActivity(), DrawerLocker, NavigationHeaderView {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navigationHeaderView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity(), DrawerLocker {
     private fun initDrawerLayout() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
         val navigationView: NavigationView = findViewById(R.id.navigationView)
+        navigationHeaderView = navigationView.getHeaderView(0)
         val navController = findNavController(R.id.nav_host_fragment)
         // menuIDs must be the same as destination IDs
         appBarConfiguration = AppBarConfiguration(
@@ -57,4 +62,13 @@ class MainActivity : AppCompatActivity(), DrawerLocker {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
     }
+
+    override fun getHeaderImageView(): ImageView =
+        navigationHeaderView.findViewById(R.id.headerImage)
+
+    override fun getDisplayNameView(): TextView =
+        navigationHeaderView.findViewById(R.id.headerDisplayName)
+
+    override fun getEmailView(): TextView =
+        navigationHeaderView.findViewById(R.id.headerEmail)
 }

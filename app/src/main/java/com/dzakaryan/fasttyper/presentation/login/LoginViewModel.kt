@@ -5,7 +5,11 @@ import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.dzakaryan.fasttyper.domain.repository.AuthenticationRepository
+import com.dzakaryan.fasttyper.domain.repository.UserRepository
 import com.dzakaryan.fasttyper.presentation.core.BaseViewModel
+import com.dzakaryan.fasttyper.presentation.mapper.toDomainUser
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
@@ -14,10 +18,15 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginViewModel(
     application: Application,
-    val googleSignInClient: GoogleSignInClient
+    val googleSignInClient: GoogleSignInClient,
+    private val authRepository: AuthenticationRepository,
+    private val userRepository: UserRepository
 ) : BaseViewModel(application) {
 
     //region Properties
@@ -48,7 +57,12 @@ class LoginViewModel(
         auth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Log.d(TAG, "signInWithCredential:success")
-                _userLiveData.value = auth.currentUser
+                viewModelScope.launch {
+                    userRepository.saveAuthenticatedUser(auth.currentUser?.toDomainUser())
+                    withContext(Dispatchers.Main) {
+                        _userLiveData.value = auth.currentUser
+                    }
+                }
             } else {
                 Log.w(TAG, "signInWithCredential:failure", task.exception)
                 _userLiveData.value = null

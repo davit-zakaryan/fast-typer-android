@@ -4,6 +4,5 @@ import com.dzakaryan.fasttyper.domain.model.User
 
 interface UserRemoteDataSource {
 
-
-    suspend fun saveUser(user: User)
+    suspend fun saveAuthenticatedUser(user: User): Boolean
 }
