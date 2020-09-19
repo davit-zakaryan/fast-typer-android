@@ -1,11 +1,13 @@
 package com.dzakaryan.fasttyper.presentation.typing.process
 
 import android.graphics.Color
+import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Spannable
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
 import android.text.TextWatcher
+import android.text.method.ScrollingMovementMethod
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.View
@@ -29,9 +31,15 @@ class TypingProcessFragment : BaseFragment() {
     //region Override open methods
     override fun getLayoutId() = R.layout.fragment_typing_process
 
+    override fun retrieveViewData(bundle: Bundle?) {
+        viewModel.textToType = bundle?.getString(ARG_RANDOM_TEXT)
+    }
+
     override fun initViews(view: View) {
         super.initViews(view)
-        textToType.setText(getString(R.string.text), TextView.BufferType.SPANNABLE)
+        //textToType.setText(getString(R.string.text), TextView.BufferType.SPANNABLE)
+        textToType.setText(viewModel.textToType, TextView.BufferType.SPANNABLE)
+        textToType.movementMethod = ScrollingMovementMethod();
         spannableText = textToType.text as Spannable
 
         val words = spannableText.split("\\s+".toRegex()).map { word ->
@@ -170,6 +178,7 @@ class TypingProcessFragment : BaseFragment() {
         private const val SECOND_IN_MILES = 1000L
         private const val GAME_DURATION_SEC = 60
         const val TYPING_DURATION_MILES = GAME_DURATION_SEC * SECOND_IN_MILES //30sec
+        const val ARG_RANDOM_TEXT = "arg.RANDOM_TEXT"
     }
     //endregion
 }

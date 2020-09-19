@@ -11,6 +11,8 @@ class TypingProcessViewModel(
 
     ) : BaseViewModel(application) {
 
+    var textToType: String? = null
+
     //region Properties
     var currentWholeTypedIndex = 0
     var currentWordIndex = 0

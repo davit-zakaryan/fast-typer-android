@@ -12,12 +12,12 @@ class TypingStartViewModel(
 ) : BaseViewModel(application) {
 
     //region Properties
-
+    lateinit var randomText: String
     //endregion
 
     fun onInitViews() {
         viewModelScope.launch {
-            val text = textRepository.getRandomText()
+            randomText = textRepository.getRandomText()
         }
     }
 

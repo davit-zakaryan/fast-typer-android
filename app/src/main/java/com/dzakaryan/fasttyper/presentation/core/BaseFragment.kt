@@ -10,10 +10,15 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment : Fragment() {
 
     //region Override open methods
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        retrieveViewData(arguments)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         (requireActivity() as? DrawerLocker)?.setDrawerLocked(false)
         (requireActivity() as? AppCompatActivity)?.supportActionBar?.show()
