@@ -12,4 +12,6 @@
     <string name="menu_action_log_out">Log Out</string>
     <string name="allowed_characters">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM :;,.?!\'-</string>
     <string name="text">Au bau often misinterpret. the ease? as an adult-needle, when in actuality; it feels! more lik</string>
+    <string name="action_sign_in_with_google">Sign in with Google</string>
+    <string name="action_play_as_a_guest">Play as a guest</string>
 </resources>

@@ -40,8 +40,8 @@ class TypingProcessFragment : BaseFragment() {
         super.initViews(view)
         //textToType.setText(getString(R.string.text), TextView.BufferType.SPANNABLE)
         textToType.setText(viewModel.textToType, TextView.BufferType.SPANNABLE)
-        textToType.movementMethod = ScrollingMovementMethod();
-        spannableText = textToType.text as Spannable
+        textToType.movementMethod = ScrollingMovementMethod()
+
 
         val words = spannableText.split("\\s+".toRegex()).map { word ->
             word.replace("""^|$""".toRegex(), "")
