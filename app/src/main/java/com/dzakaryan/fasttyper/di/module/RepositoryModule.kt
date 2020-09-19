@@ -19,7 +19,7 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     //Text
-    single<TextRemoteDataSource> { TextRemoteDataSourceImpl() }
+    single<TextRemoteDataSource> { TextRemoteDataSourceImpl(get()) }
 
     single<TextRepository> { TextRepositoryImpl(get()) }
 

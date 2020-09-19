@@ -13,6 +13,7 @@ class UserRepositoryImpl(
     override suspend fun saveAuthenticatedUser(user: User?) {
         user?.let {
             userRemoteDataSource.saveAuthenticatedUser(user)
+            userLocalDataSource.setUser(user)
         }
     }
 

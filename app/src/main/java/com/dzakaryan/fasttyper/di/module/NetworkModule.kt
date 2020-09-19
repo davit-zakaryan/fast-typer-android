@@ -1,6 +1,10 @@
 package com.dzakaryan.fasttyper.di.module
 
 import com.dzakaryan.fasttyper.BuildConfig
+import com.dzakaryan.fasttyper.data.api.RandomTextApi
+import com.dzakaryan.fasttyper.di.module.OkHttpProps.BASE_URL
+import com.dzakaryan.fasttyper.di.module.OkHttpProps.CONNECTION_TIMEOUT
+import com.dzakaryan.fasttyper.di.module.OkHttpProps.READ_WRITE_TIMEOUT
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -8,40 +12,37 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.module.Module
 import org.koin.dsl.module
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val networkModule: Module = module {
 
-    factory { HttpLoggingInterceptor() }
+    factory { provideHttpLogging() }
+    factory { provideOkHttpClient(get()) }
+    factory { provideRandomTextApi(get()) }
 
-
-    // Gson
+    single { provideRetrofit(get()) }
     single { provideGson() }
-    //factory { provideOkHttpClient(get()) }
-
-    // OkHttpClient
-    single {
-        val okHttpBuilder = OkHttpClient.Builder()
-
-        val logging = HttpLoggingInterceptor()
-
-        if (BuildConfig.DEBUG) {
-            logging.level = HttpLoggingInterceptor.Level.BODY
-        } else {
-            logging.level = HttpLoggingInterceptor.Level.BASIC
-        }
-        // Also you can add your own interceptor
-        okHttpBuilder
-            .addInterceptor(logging)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(
-                10,
-                TimeUnit.MINUTES
-            ) // fix exception when uploading files with slow internet
-            .readTimeout(1, TimeUnit.MINUTES)
-            .build()
-    }
 }
+
+fun provideHttpLogging(): HttpLoggingInterceptor {
+    val interceptor = HttpLoggingInterceptor()
+    interceptor.level = if (BuildConfig.DEBUG) {
+        HttpLoggingInterceptor.Level.BODY
+    } else {
+        HttpLoggingInterceptor.Level.BASIC
+    }
+    return interceptor
+}
+
+fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
+    return OkHttpClient.Builder()
+        .connectTimeout(CONNECTION_TIMEOUT, TimeUnit.SECONDS)
+        .readTimeout(READ_WRITE_TIMEOUT, TimeUnit.SECONDS)
+        .addInterceptor(interceptor).build()
+}
+
 
 fun provideGson(): Gson {
     return GsonBuilder()
@@ -50,22 +51,21 @@ fun provideGson(): Gson {
         .create()
 }
 
-//fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
-//    return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
-//}
 
-//fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-//    return Retrofit.Builder().baseUrl(BuildConfig.API_URL).client(okHttpClient)
-//        .addConverterFactory(GsonConverterFactory.create()).build()
-//}
-//
+fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder()
+        .baseUrl(BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+}
 
-//
-//fun provideForecastApi(retrofit: Retrofit): WeatherForecastApi = retrofit.create(WeatherForecastApi::class.java)
+fun provideRandomTextApi(retrofit: Retrofit): RandomTextApi =
+    retrofit.create(RandomTextApi::class.java)
 
 
 object OkHttpProps {
-    const val CACHE_SIZE = 10 * 1024 * 1024L
     const val CONNECTION_TIMEOUT = 30L
     const val READ_WRITE_TIMEOUT = 30L
+    const val BASE_URL = "http://dzakaryan.com" //This is fictive url
 }

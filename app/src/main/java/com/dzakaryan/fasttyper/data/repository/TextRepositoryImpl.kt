@@ -7,10 +7,5 @@ class TextRepositoryImpl(
     private val remoteDataSource: TextRemoteDataSource,
 ) : TextRepository {
 
-    private var sentences: Int = 10
-    private val url = "http://metaphorpsum.com/sentences/{$sentences}}"
-    private var useCashed = false
-
-    override suspend fun getRandomText(sentencesCount: Int) =
-        remoteDataSource.getRandomText(sentencesCount)
+    override suspend fun getRandomText() = remoteDataSource.getRandomText()
 }

@@ -12,3 +12,4 @@ fun FirebaseUser.toDomainUser(): User {
         stats = null
     )
 }
+

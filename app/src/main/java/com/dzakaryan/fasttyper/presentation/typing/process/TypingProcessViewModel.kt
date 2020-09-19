@@ -17,7 +17,6 @@ class TypingProcessViewModel(
     var successTypedIndex = 0
     //endregion
 
-
     init {
 
         val tickerChannel = ticker(delayMillis = 60_000, initialDelayMillis = 100)
@@ -29,4 +28,14 @@ class TypingProcessViewModel(
             // delay(tickerChannel.)
         }
     }
+
+//    fun onInitViews() {
+//        viewModelScope.launch {
+//            textRepository.getRandomText()
+//        }
+//    }
+
+    //region Companion object
+
+    //endregion
 }

@@ -1,7 +1,6 @@
 package com.dzakaryan.fasttyper.presentation.typing.process
 
 import android.graphics.Color
-import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.Spannable
@@ -17,26 +16,21 @@ import com.dzakaryan.fasttyper.presentation.core.showSoftKeyboard
 import kotlinx.android.synthetic.main.fragment_typing_process.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-
 class TypingProcessFragment : BaseFragment() {
-
-    private var isMistakeShown: Boolean = false
 
     //region Properties
     private val viewModel: TypingProcessViewModel by viewModel()
     private val countDownTimer: CountDownTimer by lazy { initCountDownTimer() }
     private lateinit var styleSpan: StyleSpan
     private lateinit var spannableText: Spannable
+    private var isMistakeShown: Boolean = false
     //endregion
 
     //region Override open methods
     override fun getLayoutId() = R.layout.fragment_typing_process
-    //endregion
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initViews(view: View) {
+        super.initViews(view)
         textToType.setText(getString(R.string.text), TextView.BufferType.SPANNABLE)
         spannableText = textToType.text as Spannable
 
@@ -70,7 +64,9 @@ class TypingProcessFragment : BaseFragment() {
 
         })
     }
+    //endregion
 
+    //region Private utility methods
     private fun afterTextChanged(editable: Editable, words: List<String>) {
         if (editable.isEmpty()) {
             return
@@ -155,7 +151,6 @@ class TypingProcessFragment : BaseFragment() {
 
     }
 
-
     private fun initCountDownTimer(): CountDownTimer {
         return object : CountDownTimer(TYPING_DURATION_MILES, SECOND_IN_MILES) {
             override fun onTick(millisUntilFinished: Long) {
@@ -168,7 +163,7 @@ class TypingProcessFragment : BaseFragment() {
             }
         }
     }
-
+    //endregion
 
     //region Companion object
     companion object {
