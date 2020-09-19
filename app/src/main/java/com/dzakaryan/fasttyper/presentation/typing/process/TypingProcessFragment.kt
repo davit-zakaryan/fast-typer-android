@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.TextView
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
+import com.dzakaryan.fasttyper.presentation.core.hideSoftKeyboard
 import com.dzakaryan.fasttyper.presentation.core.showSoftKeyboard
 import kotlinx.android.synthetic.main.fragment_typing_process.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -71,6 +72,11 @@ class TypingProcessFragment : BaseFragment() {
             }
 
         })
+    }
+
+    override fun onDestroyView() {
+        requireActivity().hideSoftKeyboard()
+        super.onDestroyView()
     }
     //endregion
 
