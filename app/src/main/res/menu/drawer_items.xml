@@ -22,7 +22,7 @@
             android:title="@string/menu_action_settings" />
 
         <item
-            android:id="@+id/loginFragment"
+            android:id="@+id/action_logout"
             android:icon="@drawable/ic_exit_24"
             android:title="@string/menu_action_log_out" />
     </group>

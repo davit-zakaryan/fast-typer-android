@@ -12,4 +12,8 @@ class HistoryRepositoryImpl(
     override suspend fun requestAllHistory(user: User): List<WpmStat> {
         return statisticsRemoteDataSource.getStatsForUser(user)
     }
+
+    override suspend fun saveLastResult(user: User, wpmStat: WpmStat): Boolean {
+        return statisticsRemoteDataSource.addStatRecord(wpmStat, user)
+    }
 }

@@ -4,7 +4,7 @@ import com.dzakaryan.fasttyper.domain.datasource.remote.AuthRemoteDataSource
 import com.dzakaryan.fasttyper.domain.repository.AuthenticationRepository
 
 class AuthRepositoryImpl(
-    val authRemoteDataSource: AuthRemoteDataSource
+    val authRemoteDataSource: AuthRemoteDataSource,
 ) : AuthenticationRepository {
 
 
@@ -13,6 +13,6 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun signOut() {
-        TODO("Not yet implemented")
+        authRemoteDataSource.signOut()
     }
 }

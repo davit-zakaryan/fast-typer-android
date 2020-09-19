@@ -1,15 +1,20 @@
 package com.dzakaryan.fasttyper.di.module
 
 import com.dzakaryan.fasttyper.BuildConfig
+import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.data.api.RandomTextApi
 import com.dzakaryan.fasttyper.di.module.OkHttpProps.BASE_URL
 import com.dzakaryan.fasttyper.di.module.OkHttpProps.CONNECTION_TIMEOUT
 import com.dzakaryan.fasttyper.di.module.OkHttpProps.READ_WRITE_TIMEOUT
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -24,6 +29,16 @@ val networkModule: Module = module {
 
     single { provideRetrofit(get()) }
     single { provideGson() }
+
+    //Firebase
+    single<GoogleSignInOptions> {
+        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(androidContext().getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+    }
+
+    single<GoogleSignInClient> { GoogleSignIn.getClient(androidContext(), get()) }
 }
 
 fun provideHttpLogging(): HttpLoggingInterceptor {

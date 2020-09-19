@@ -1,6 +1,7 @@
 package com.dzakaryan.fasttyper.presentation.core
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,11 +16,14 @@ import androidx.navigation.ui.setupWithNavController
 import com.dzakaryan.fasttyper.R
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity(), DrawerLocker, NavigationHeaderView {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navigationHeaderView: View
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +65,13 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationHeaderView {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
+
+        navigationView.menu.findItem(R.id.action_logout)
+            .setOnMenuItemClickListener { menuItem: MenuItem? ->
+                viewModel.onLogoutClick()
+                true
+            }
+        //navigationView.setNavigationItemSelectedListener(this)
     }
 
     override fun getHeaderImageView(): ImageView =
@@ -71,4 +82,14 @@ class MainActivity : AppCompatActivity(), DrawerLocker, NavigationHeaderView {
 
     override fun getEmailView(): TextView =
         navigationHeaderView.findViewById(R.id.headerEmail)
+
+//    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+//        if (menuItem.itemId == R.id.action_logout) {
+//            viewModel.onLogoutClick()
+//            findNavController().navigate(R.id.loginFragment)
+//            drawerLayout.close()
+//            return true
+//        }
+//        return false
+//    }
 }

@@ -26,7 +26,7 @@ class LoginViewModel(
     application: Application,
     val googleSignInClient: GoogleSignInClient,
     private val authRepository: AuthenticationRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : BaseViewModel(application) {
 
     //region Properties
@@ -36,6 +36,15 @@ class LoginViewModel(
     //endregion
 
     //region Public methods
+    fun checkForStartPage() {
+        viewModelScope.launch {
+            userRepository.saveAuthenticatedUser(auth.currentUser?.toDomainUser())
+            withContext(Dispatchers.Main) {
+                _userLiveData.value = auth.currentUser
+            }
+        }
+    }
+
     fun googleSignInResult(data: Intent?) {
         val task = GoogleSignIn.getSignedInAccountFromIntent(data)
         try {

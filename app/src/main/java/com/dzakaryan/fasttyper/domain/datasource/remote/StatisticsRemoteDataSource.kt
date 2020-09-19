@@ -7,5 +7,5 @@ interface StatisticsRemoteDataSource {
 
     suspend fun getStatsForUser(user: User): List<WpmStat>
 
-    suspend fun addStatRecord(stat: WpmStat, user: User)
+    suspend fun addStatRecord(stat: WpmStat, user: User): Boolean
 }

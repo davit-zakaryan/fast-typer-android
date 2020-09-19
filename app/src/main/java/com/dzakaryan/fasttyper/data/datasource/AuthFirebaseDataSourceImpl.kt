@@ -1,6 +1,8 @@
 package com.dzakaryan.fasttyper.data.datasource
 
 import com.dzakaryan.fasttyper.domain.datasource.remote.AuthRemoteDataSource
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class AuthFirebaseDataSourceImpl : AuthRemoteDataSource {
 
@@ -9,6 +11,6 @@ class AuthFirebaseDataSourceImpl : AuthRemoteDataSource {
     }
 
     override suspend fun signOut() {
-        TODO("Not yet implemented")
+        Firebase.auth.signOut()
     }
 }

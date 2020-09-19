@@ -26,6 +26,8 @@ class LoginFragment : BaseFragment() {
         (requireActivity() as? DrawerLocker)?.setDrawerLocked(true)
         (requireActivity() as? AppCompatActivity)?.supportActionBar?.hide()
 
+        viewModel.checkForStartPage()
+
         signInGoogleButton.setOnClickListener {
             val signInIntent = viewModel.googleSignInClient.signInIntent
             startActivityForResult(signInIntent, FIREBASE_SIGN_IN_RC)
