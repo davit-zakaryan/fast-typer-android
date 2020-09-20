@@ -1,4 +1,4 @@
-package com.dzakaryan.fasttyper.presentation.core
+package com.dzakaryan.fasttyper.presentation.main
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -14,6 +14,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.dzakaryan.fasttyper.R
+import com.dzakaryan.fasttyper.presentation.core.DrawerLocker
+import com.dzakaryan.fasttyper.presentation.core.NavigationHeaderView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.viewmodel.ext.android.viewModel
