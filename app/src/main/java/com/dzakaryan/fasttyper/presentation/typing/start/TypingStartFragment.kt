@@ -2,6 +2,7 @@ package com.dzakaryan.fasttyper.presentation.typing.start
 
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import com.dzakaryan.fasttyper.R
 import com.dzakaryan.fasttyper.presentation.core.BaseFragment
@@ -21,11 +22,18 @@ class TypingStartFragment : BaseFragment() {
     override fun initViews(view: View) {
         viewModel.onInitViews()
 
+        primaryActionButton.isEnabled = false
         primaryActionButton.setOnClickListener {
             val bundle = bundleOf(ARG_RANDOM_TEXT to viewModel.randomText)
             it.findNavController()
                 .navigate(R.id.action_typingStartFragment_to_typingProcessFragment, bundle)
         }
+    }
+
+    override fun observeData() {
+        viewModel.primaryButtonEnabledLiveData.observe(viewLifecycleOwner, Observer {
+            primaryActionButton.isEnabled = it
+        })
     }
     //endregion
 }
