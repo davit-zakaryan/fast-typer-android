@@ -16,7 +16,7 @@ class StatisticsViewModel(
 
     fun getPlayingHistory() {
         viewModelScope.launch {
-            val stats = historyRepository.requestAllHistory(userRepository.getUser())
+            //val stats = historyRepository.requestAllHistory(userRepository.getUser())
         }
     }
 }
