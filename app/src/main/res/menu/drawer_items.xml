@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/typingStartFragment"
+            android:icon="@drawable/ic_joystick_24"
+            android:title="@string/menu_action_play" />
+        <item
+            android:id="@+id/statisticsFragment"
+            android:icon="@drawable/ic_stats"
+            android:title="@string/menu_action_statistics" />
+        <item
+            android:id="@+id/leaderboardFragment"
+            android:icon="@drawable/ic_medal_24"
+            android:title="@string/menu_action_leaderboard" />
+
+        <item
+            android:id="@+id/settingsFragment"
+            android:icon="@drawable/ic_settings_24"
+            android:title="@string/menu_action_settings" />
+
+        <item
+            android:id="@+id/action_logout"
+            android:icon="@drawable/ic_exit_24"
+            android:title="@string/menu_action_log_out" />
+    </group>
+</menu>

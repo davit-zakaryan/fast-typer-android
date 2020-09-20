@@ -1,6 +1,6 @@
 package com.dzakaryan.fasttyper.domain.repository
 
-interface IAuthenticationRepository {
+interface AuthenticationRepository {
 
     suspend fun signIn()
 

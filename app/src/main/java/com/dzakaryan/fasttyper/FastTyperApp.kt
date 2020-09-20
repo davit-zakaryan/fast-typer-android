@@ -1,38 +1,28 @@
 package com.dzakaryan.fasttyper
 
 import android.app.Application
-import com.dzakaryan.fasttyper.di.component.AppComponent
-import com.dzakaryan.fasttyper.di.component.DaggerAppComponent
-import com.dzakaryan.fasttyper.di.module.AppModule
-import com.dzakaryan.fasttyper.di.module.NetworkModule
+import com.dzakaryan.fasttyper.di.module.appModule
+import com.dzakaryan.fasttyper.di.module.networkModule
+import com.dzakaryan.fasttyper.di.module.repositoryModule
 import com.facebook.stetho.Stetho
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class FastTyperApp : Application() {
-
-    //region Properties
-    private val applicationComponent: AppComponent by lazy(mode = LazyThreadSafetyMode.NONE) {
-        initDagger(this)
-    }
-    //endregion
 
     //region Lifecycle methods
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
-    }
-    //endregion
 
-    //region Public methods
-    fun getAppComponent() = applicationComponent
-    //endregion
-
-    //region Private utility methods
-    private fun initDagger(application: FastTyperApp): AppComponent {
-        return DaggerAppComponent
-            .builder()
-            .appModule(AppModule(application))
-            .networkModule(NetworkModule())
-            .build()
+        // start Koin context
+        startKoin {
+            androidLogger(Level.ERROR)
+            androidContext(this@FastTyperApp)
+            modules(appModule, networkModule, repositoryModule)
+        }
     }
     //endregion
 }

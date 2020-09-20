@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Fast Typer</string>
+    <string name="login_subtitle">Improve your typing skill with us</string>
+    <string name="action_start">Start</string>
+    <string name="typing_subtitle">Train yourself to type fast</string>
+    <string name="end_typing_subtitle">You did it</string>
+    <string name="action_play_again">Play again</string>
+    <string name="menu_action_play">Play</string>
+    <string name="menu_action_statistics">Statistics</string>
+    <string name="menu_action_leaderboard">Leaderboard</string>
+    <string name="menu_action_settings">Settings</string>
+    <string name="menu_action_log_out">Log Out</string>
+    <string name="allowed_characters">0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM :;,.?!\'-</string>
+    <string name="text">Au bau often misinterpret. the ease? as an adult-needle, when in actuality; it feels! more lik</string>
+    <string name="action_sign_in_with_google">Sign in with Google</string>
+    <string name="action_play_as_a_guest">Play as a guest</string>
+    <string name="time_is_up">Timeis up</string>
+    <string name="your_wpm">Your WPM</string>
 </resources>
