@@ -22,15 +22,10 @@ class TypingProcessViewModel(
     private var typedCharactersCount = 0
 
     private lateinit var spannableTextToType: Spannable
-    lateinit var words: List<String>
-    var currentWordIndex = 0
-    var isMistakeHighlighted = false
+    private lateinit var words: List<String>
+    private var currentWordIndex = 0
+    private var isMistakeHighlighted = false
     var lastWpm: String = ""
-
-
-    var currentWholeTypedIndex = 0
-
-    var successTypedIndex = 0
     var textToType: String? = null
 
     private val _timerValueLiveData = MutableLiveData<String>()
@@ -115,7 +110,6 @@ class TypingProcessViewModel(
         isMistakeHighlighted = false
     }
     //endregion
-
 
     //region Private utility methods
     private fun createCountDownTimer() =

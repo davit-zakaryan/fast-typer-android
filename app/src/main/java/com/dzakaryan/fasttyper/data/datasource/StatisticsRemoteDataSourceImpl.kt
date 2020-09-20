@@ -25,18 +25,10 @@ class StatisticsRemoteDataSourceImpl : StatisticsRemoteDataSource {
         val wmas = userDoc.documents.map { documentSnapshot ->
             documentSnapshot.toObject<WpmStat>()!!
         }
-        //return userDoc.toObjects<>()
-//        usersRef.document(user.uid).collection(STATS).(
-//            WpmStat(
-//                value = Random.nextInt(),
-//                created = System.currentTimeMillis(),
-//                userId = user.uid
-//            )
-//        )
         return wmas
     }
 
-    override suspend fun addStatRecord(stat: WpmStat, user: User) {
+    override suspend fun addStatRecord(stat: WpmStat, user: User): Boolean {
         usersRef.document(user.uid).collection(STATS).add(
             WpmStat(
                 value = Random.nextInt(),
@@ -44,5 +36,6 @@ class StatisticsRemoteDataSourceImpl : StatisticsRemoteDataSource {
                 userId = user.uid
             )
         )
+        return true
     }
 }

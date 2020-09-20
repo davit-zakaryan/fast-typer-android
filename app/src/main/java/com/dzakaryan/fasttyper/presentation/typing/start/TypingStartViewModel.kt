@@ -20,6 +20,4 @@ class TypingStartViewModel(
             randomText = textRepository.getRandomText()
         }
     }
-
-
 }

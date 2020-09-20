@@ -26,7 +26,6 @@ class TypingStartFragment : BaseFragment() {
             it.findNavController()
                 .navigate(R.id.action_typingStartFragment_to_typingProcessFragment, bundle)
         }
-
     }
     //endregion
 }

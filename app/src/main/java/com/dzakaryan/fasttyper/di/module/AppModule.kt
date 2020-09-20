@@ -1,8 +1,8 @@
 package com.dzakaryan.fasttyper.di.module
 
-import com.dzakaryan.fasttyper.presentation.core.MainViewModel
 import com.dzakaryan.fasttyper.presentation.leaderboard.LeaderboardViewModel
 import com.dzakaryan.fasttyper.presentation.login.LoginViewModel
+import com.dzakaryan.fasttyper.presentation.main.MainViewModel
 import com.dzakaryan.fasttyper.presentation.settings.SettingsViewModel
 import com.dzakaryan.fasttyper.presentation.statistics.StatisticsViewModel
 import com.dzakaryan.fasttyper.presentation.typing.end.TypingEndViewModel
@@ -25,7 +25,7 @@ val appModule: Module = module {
 
     viewModel { StatisticsViewModel(androidApplication(), get(), get()) }
 
-    viewModel { TypingEndViewModel(androidApplication(), get()) }
+    viewModel { TypingEndViewModel(androidApplication(), get(), get()) }
 
     viewModel { TypingProcessViewModel(androidApplication()) }
 
