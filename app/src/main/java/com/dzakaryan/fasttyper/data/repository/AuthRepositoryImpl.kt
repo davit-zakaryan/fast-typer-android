@@ -1,6 +1,6 @@
 package com.dzakaryan.fasttyper.data.repository
 
-import com.dzakaryan.fasttyper.domain.datasource.remote.AuthRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.AuthRemoteDataSource
 import com.dzakaryan.fasttyper.domain.repository.AuthenticationRepository
 
 class AuthRepositoryImpl(

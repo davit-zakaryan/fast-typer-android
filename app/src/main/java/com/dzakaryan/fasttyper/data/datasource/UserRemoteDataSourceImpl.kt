@@ -1,7 +1,7 @@
 package com.dzakaryan.fasttyper.data.datasource
 
 import com.dzakaryan.fasttyper.data.datasource.FirestoreConstants.USERS
-import com.dzakaryan.fasttyper.domain.datasource.remote.UserRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.UserRemoteDataSource
 import com.dzakaryan.fasttyper.domain.model.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

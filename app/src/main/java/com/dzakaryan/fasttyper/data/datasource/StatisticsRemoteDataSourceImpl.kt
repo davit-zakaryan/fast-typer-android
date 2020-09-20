@@ -2,7 +2,7 @@ package com.dzakaryan.fasttyper.data.datasource
 
 import com.dzakaryan.fasttyper.data.datasource.FirestoreConstants.STATS
 import com.dzakaryan.fasttyper.data.datasource.FirestoreConstants.USERS
-import com.dzakaryan.fasttyper.domain.datasource.remote.StatisticsRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.StatisticsRemoteDataSource
 import com.dzakaryan.fasttyper.domain.model.User
 import com.dzakaryan.fasttyper.domain.model.WpmStat
 import com.google.firebase.firestore.ktx.firestore

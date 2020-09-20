@@ -1,7 +1,7 @@
 package com.dzakaryan.fasttyper.data.datasource
 
 import com.dzakaryan.fasttyper.data.api.RandomTextApi
-import com.dzakaryan.fasttyper.domain.datasource.remote.TextRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.TextRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 
 class TextRemoteDataSourceImpl(

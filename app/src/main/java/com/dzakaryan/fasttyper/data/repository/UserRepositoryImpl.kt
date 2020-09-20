@@ -1,7 +1,7 @@
 package com.dzakaryan.fasttyper.data.repository
 
-import com.dzakaryan.fasttyper.domain.datasource.remote.UserLocalDataSource
-import com.dzakaryan.fasttyper.domain.datasource.remote.UserRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.UserLocalDataSource
+import com.dzakaryan.fasttyper.domain.datasource.UserRemoteDataSource
 import com.dzakaryan.fasttyper.domain.model.User
 import com.dzakaryan.fasttyper.domain.repository.UserRepository
 

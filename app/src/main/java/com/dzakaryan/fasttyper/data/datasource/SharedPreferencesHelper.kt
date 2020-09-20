@@ -1,7 +1,7 @@
 package com.dzakaryan.fasttyper.data.datasource
 
 import android.content.SharedPreferences
-import com.dzakaryan.fasttyper.domain.datasource.remote.UserLocalDataSource
+import com.dzakaryan.fasttyper.domain.datasource.UserLocalDataSource
 import com.dzakaryan.fasttyper.domain.model.User
 import com.google.gson.Gson
 

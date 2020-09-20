@@ -8,7 +8,7 @@ import com.dzakaryan.fasttyper.data.repository.AuthRepositoryImpl
 import com.dzakaryan.fasttyper.data.repository.HistoryRepositoryImpl
 import com.dzakaryan.fasttyper.data.repository.TextRepositoryImpl
 import com.dzakaryan.fasttyper.data.repository.UserRepositoryImpl
-import com.dzakaryan.fasttyper.domain.datasource.remote.*
+import com.dzakaryan.fasttyper.domain.datasource.*
 import com.dzakaryan.fasttyper.domain.repository.AuthenticationRepository
 import com.dzakaryan.fasttyper.domain.repository.HistoryRepository
 import com.dzakaryan.fasttyper.domain.repository.TextRepository

@@ -1,4 +1,4 @@
-package com.dzakaryan.fasttyper.domain.datasource.remote
+package com.dzakaryan.fasttyper.domain.datasource
 
 interface TextRemoteDataSource {
 

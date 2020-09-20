@@ -1,6 +1,6 @@
 package com.dzakaryan.fasttyper.data.datasource
 
-import com.dzakaryan.fasttyper.domain.datasource.remote.AuthRemoteDataSource
+import com.dzakaryan.fasttyper.domain.datasource.AuthRemoteDataSource
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
