@@ -1,8 +1,6 @@
 # fast-typer-android
 Application for improving your typing speed.
 
-
-
 ## Languages, libraries and tools used
 
 * [Kotlin](https://kotlinlang.org/)
